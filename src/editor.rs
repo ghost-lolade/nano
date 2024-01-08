@@ -1,7 +1,6 @@
 use crate::Terminal;
-use std::io::{self, stdout, Write};
+use std::io::stdout;
 use termion::event::Key;
-use termion::input::TermRead;
 use termion::raw::IntoRawMode;
 
 pub struct Editor {
@@ -50,7 +49,7 @@ impl Editor {
 
     fn process_keypress(&mut self) -> Result<(), std::io::Error> {
         let pressed_key = Terminal::read_key()?;
-        
+
         match pressed_key {
             Key::Ctrl('c') => self.should_quit = true,
             _ => (),
